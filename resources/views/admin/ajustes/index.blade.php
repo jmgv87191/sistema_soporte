@@ -34,7 +34,71 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-9">
-                                cont
+                                <div class="row">
+                                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="nombre">Nombre del sistema <b>(*)</b> </label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" >
+                                                        <i class="fas fa-building"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="form-control" name="nombre" id="nombre"
+                                                    value="{{old('nombre')}}" placeholder="Ej. Nombre del sistema" required>
+                                                
+                                            </div>
+                                            @error('nombre')
+                                                <small class="text-danger">* {{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="descripcion">descripción <b>(*)</b> </label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" >
+                                                        <i class="fas fa-align-left"></i>
+                                                    </span>
+                                                </div>
+                                                <textarea class="form-control" name="descripcion" id="descripcion"  cols="30" rows="1"
+                                                placeholder="Descripcion del negocio" required{{old('descripcion')}}
+                                                ></textarea>
+                                                
+                                            </div>
+                                            @error('nombre')
+                                                <small class="text-danger">* {{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="sucursal">Sucursal <b>(*)</b> </label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" >
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="form-control" name="sucursal" id="sucursal"
+                                                    value="{{old('sucursal')}}" placeholder="Ej. Sucursal centro" required>
+                                                
+                                            </div>
+                                            @error('nombre')
+                                                <small class="text-danger">* {{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+                                    
+                                </div>
                             </div>
                             <div class="col-md-3">
                                 img
