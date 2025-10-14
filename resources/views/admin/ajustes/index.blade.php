@@ -33,6 +33,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+
                             <div class="col-md-9">
                                 <div class="row">
                                     
@@ -69,7 +70,7 @@
                                                 ></textarea>
                                                 
                                             </div>
-                                            @error('nombre')
+                                            @error('descripcion')
                                                 <small class="text-danger">* {{ $message }}</small>
                                             @enderror
                                         </div>
@@ -89,7 +90,27 @@
                                                     value="{{old('sucursal')}}" placeholder="Ej. Sucursal centro" required>
                                                 
                                             </div>
-                                            @error('nombre')
+                                            @error('sucursal')
+                                                <small class="text-danger">* {{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="telefonos">Teléfonos <b>(*)</b> </label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" >
+                                                        <i class="fas fa-phone"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="form-control" name="telefonos" id="telefonos"
+                                                    value="{{old('sucursal')}}" placeholder="Ej. +52 612 121122" required>
+                                                
+                                            </div>
+                                            @error('telefonos')
                                                 <small class="text-danger">* {{ $message }}</small>
                                             @enderror
                                         </div>
@@ -97,12 +118,177 @@
 
 
 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="direccion">dirección <b>(*)</b> </label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" >
+                                                        <i class="fas fa-home"></i>
+                                                    </span>
+                                                </div>
+                                                <textarea class="form-control" name="direccion" id="direccion"  cols="30" rows="1"
+                                                placeholder="Dirección completa" required{{old('direccion')}}
+                                                ></textarea>
+                                                
+                                            </div>
+                                            @error('direccion')
+                                                <small class="text-danger">* {{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="divisa">Moneda <b>(*)</b> </label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" >
+                                                        <i class="fas fa-dollar-sign"></i>
+                                                    </span>
+                                                </div>
+
+                                                <select name="divisa" class="form-control" id="divisa" required>
+                                                    <option value="" disabled selected>-- Seleccione una opción --</option>
+                                                    @foreach( $divisas as $divisa )
+                                                        <option value="{{ $divisa['code'] }}" 
+                                                            {{ old('divisa') == $divisa['code'] ? 'selected' : '' }}>
+                                                            {{ $divisa['name'] }} - {{ $divisa['code'] }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                
+                                            </div>
+                                            @error('divisa')
+                                                <small class="text-danger">* {{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="correo">Correo Electrónico <b>(*)</b> </label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" >
+                                                        <i class="fas fa-envelope"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="email" class="form-control" name="correo" id="correo"
+                                                    value="{{old('correo')}}" placeholder="Ej. juan@ejemplo.com" required>
+                                                
+                                            </div>
+                                            @error('correo')
+                                                <small class="text-danger">* {{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="pagina_web">Pagina web <b>(*)</b> </label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" >
+                                                        <i class="fas fa-globe"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="url" class="form-control" name="pagina_web" id="pagina_web"
+                                                    value="{{old('correo')}}" placeholder="Ej. http://tuPagina.com" required>
+                                                
+                                            </div>
+                                            @error('pagina_web')
+                                                <small class="text-danger">* {{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                     
                                 </div>
                             </div>
+
                             <div class="col-md-3">
-                                img
+                                <div class="row">
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="logo">Logo principal <b>(*)</b> </label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" >
+                                                        <i class="fas fa-image"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="file" class="form-control" name="logo" id="logo"
+                                                    accept="image/*" onchange="mostrarImagen(event)" required>
+                                                
+                                            </div>
+
+                                            <center>
+                                                <img id='preview1' src=""
+                                                style="max-width: 100px; margin-top:10px">
+                                            </center>
+
+
+
+                                            @error('logo')
+                                                <small class="text-danger">* {{ $message }}</small>
+                                            @enderror
+                                    </div>
+                                </div>
+
+                                <script>
+                                    const mostrarImagen = e =>
+                                    document.getElementById('preview1').src = URL.createObjectURL(e.target.files[0]);
+                                </script>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="logo_auto">Logo para auto <b>(*)</b> </label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" >
+                                                        <i class="fas fa-car"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="file" class="form-control" name="logo_auto" id="logo_auto"
+                                                    accept="image/*" onchange="mostrarImagen2(event)" required>
+                                                
+                                            </div>
+
+
+                                            <center>
+                                                <img id='preview2' src=""
+                                                style="max-width: 100px; margin-top:10px">
+                                            </center>
+
+                                            @error('logo_auto')
+                                                <small class="text-danger">* {{ $message }}</small>
+                                            @enderror
+                                    </div>
+                                </div>
+
+
+                                <script>
+                                    const mostrarImagen2 = e =>
+                                    document.getElementById('preview2').src = URL.createObjectURL(e.target.files[0]);
+                                </script>
+
                             </div>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-danger">(*) Campos obligatorios</p>
+                            <button type="submit" class="btn btn-primary float-right" > <i class="fa fa-save"></i> Guardar</button>
                         </div>
                     </div>
                 </div>
