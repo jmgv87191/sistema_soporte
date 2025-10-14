@@ -14,6 +14,15 @@ return new class extends Migration
         Schema::create('ajustes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->text('descripcion');
+            $table->string('sucursal');
+            $table->string('direccion');
+            $table->string('telefono');
+            $table->string('logo');
+            $table->string('logo_auto');
+            $table->string('divisa');
+            $table->string('correo');
+            $table->string('pagina_web')->nullable();
             $table->timestamps();
         });
     }
