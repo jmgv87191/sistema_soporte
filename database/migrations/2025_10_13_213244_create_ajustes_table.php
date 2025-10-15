@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('ajustes', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('descripcion')->nullable();
+            $table->string('sucursal')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('telefonos')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('logo_auto')->nullable();
+            $table->string('divisa')->nullable();
+            $table->string('correo')->nullable();
+            $table->string('pagina_web')->nullable();
+
+
             $table->timestamps();
         });
     }

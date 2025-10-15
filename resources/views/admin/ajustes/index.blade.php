@@ -32,7 +32,7 @@
 
                     </div>
                     <div class="card-body">
-                        <form action=" {{ url('/admin/ajustes/create') }} " method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.ajustes.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
 
@@ -109,7 +109,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="text" class="form-control" name="telefonos" id="telefonos"
-                                                    value="{{old('sucursal')}}" placeholder="Ej. +52 612 121122" required>
+                                                    value="{{old('telefonos')}}" placeholder="Ej. +52 612 121122" required>
                                                 
                                             </div>
                                             @error('telefonos')
@@ -200,7 +200,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="url" class="form-control" name="pagina_web" id="pagina_web"
-                                                    value="{{old('correo')}}" placeholder="Ej. http://tuPagina.com" required>
+                                                    value="{{old('pagina_web')}}" placeholder="Ej. http://tuPagina.com" required>
                                                 
                                             </div>
                                             @error('pagina_web')

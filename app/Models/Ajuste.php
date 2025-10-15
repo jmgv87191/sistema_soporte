@@ -13,7 +13,7 @@ class Ajuste extends Model
         'descripcion',
         'sucursal',
         'direccion',
-        'telefono',
+        'telefonos',
         'logo',
         'logo_auto',
         'divisa',
