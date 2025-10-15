@@ -32,9 +32,11 @@
 
                     </div>
                     <div class="card-body">
-                        <div class="row">
+                        <form action=" {{ url('/admin/ajustes/create') }} " method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
 
-                            <div class="col-md-9">
+                                <div class="col-md-9">
                                 <div class="row">
                                     
                                     <div class="col-md-4">
@@ -209,9 +211,9 @@
 
                                     
                                 </div>
-                            </div>
+                                </div>
 
-                            <div class="col-md-3">
+                                <div class="col-md-3">
                                 <div class="row">
 
 
@@ -280,18 +282,19 @@
                                     document.getElementById('preview2').src = URL.createObjectURL(e.target.files[0]);
                                 </script>
 
-                            </div>
+                                </div>
 
-                        </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="text-danger">(*) Campos obligatorios</p>
+                                    <button type="submit" class="btn btn-primary float-right" > <i class="fa fa-save"></i> Guardar</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p class="text-danger">(*) Campos obligatorios</p>
-                            <button type="submit" class="btn btn-primary float-right" > <i class="fa fa-save"></i> Guardar</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
