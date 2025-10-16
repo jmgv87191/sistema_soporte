@@ -400,21 +400,23 @@ return [
                 ],
             ],
         ],
-        'Sweetalert2' => [
-            'active' => true,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.all.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => true,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css',
-                ],
-            ],
+'Sweetalert2' => [
+    'active' => true,
+    'files' => [
+        [
+            'type' => 'js',
+            'asset' => false,
+            'location' => '//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js',
         ],
+        [
+            'type' => 'css',
+            'asset' => false,
+            'location' => '//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css',
+        ],
+    ],
+],
+
+
         'Pace' => [
             'active' => false,
             'files' => [

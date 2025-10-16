@@ -32,7 +32,7 @@
 
                     </div>
                     <div class="card-body">
-<form action="{{ route('admin.ajustes.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.ajustes.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
 
@@ -49,7 +49,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="text" class="form-control" name="nombre" id="nombre"
-                                                    value="{{old('nombre')}}" placeholder="Ej. Nombre del sistema" required>
+                                                    value="{{old('nombre',$ajuste->nombre ?? '' )}}" placeholder="Ej. Nombre del sistema" required>
                                                 
                                             </div>
                                             @error('nombre')
@@ -68,8 +68,8 @@
                                                     </span>
                                                 </div>
                                                 <textarea class="form-control" name="descripcion" id="descripcion"  cols="30" rows="1"
-                                                placeholder="Descripcion del negocio" required{{old('descripcion')}}
-                                                ></textarea>
+                                                placeholder="Descripcion del negocio" required
+                                                >{{old('descripcion', $ajuste->descripcion ?? '' )}}</textarea>
                                                 
                                             </div>
                                             @error('descripcion')
@@ -89,7 +89,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="text" class="form-control" name="sucursal" id="sucursal"
-                                                    value="{{old('sucursal')}}" placeholder="Ej. Sucursal centro" required>
+                                                    value="{{old('sucursal',$ajuste->sucursal)}}" placeholder="Ej. Sucursal centro" required>
                                                 
                                             </div>
                                             @error('sucursal')
@@ -109,7 +109,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="text" class="form-control" name="telefonos" id="telefonos"
-                                                    value="{{old('telefonos')}}" placeholder="Ej. +52 612 121122" required>
+                                                    value="{{old('telefonos',$ajuste->telefonos)}}" placeholder="Ej. +52 612 121122" required>
                                                 
                                             </div>
                                             @error('telefonos')
@@ -130,8 +130,8 @@
                                                     </span>
                                                 </div>
                                                 <textarea class="form-control" name="direccion" id="direccion"  cols="30" rows="1"
-                                                placeholder="Dirección completa" required{{old('direccion')}}
-                                                ></textarea>
+                                                placeholder="Dirección completa" required
+                                                >{{old('direccion', $ajuste->direccion ?? '' )}}</textarea>
                                                 
                                             </div>
                                             @error('direccion')
@@ -156,7 +156,7 @@
                                                     <option value="" disabled selected>-- Seleccione una opción --</option>
                                                     @foreach( $divisas as $divisa )
                                                         <option value="{{ $divisa['code'] }}" 
-                                                            {{ old('divisa') == $divisa['code'] ? 'selected' : '' }}>
+                                                            {{ old('divisa',$ajuste->divisa) == $divisa['code'] ? 'selected' : '' }}>
                                                             {{ $divisa['name'] }} - {{ $divisa['code'] }}
                                                         </option>
                                                     @endforeach
@@ -181,7 +181,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="email" class="form-control" name="correo" id="correo"
-                                                    value="{{old('correo')}}" placeholder="Ej. juan@ejemplo.com" required>
+                                                    value="{{old('correo',$ajuste->correo)}}" placeholder="Ej. juan@ejemplo.com" required>
                                                 
                                             </div>
                                             @error('correo')
@@ -200,7 +200,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="url" class="form-control" name="pagina_web" id="pagina_web"
-                                                    value="{{old('pagina_web')}}" placeholder="Ej. http://tuPagina.com" required>
+                                                    value="{{old('pagina_web',$ajuste->pagina_web)}}" placeholder="Ej. http://tuPagina.com" required>
                                                 
                                             </div>
                                             @error('pagina_web')
@@ -232,7 +232,7 @@
                                             </div>
 
                                             <center>
-                                                <img id='preview1' src=""
+                                                <img id='preview1' src="{{ asset('storage/logos'.$ajuste->logo) }}"
                                                 style="max-width: 100px; margin-top:10px">
                                             </center>
 

@@ -16,8 +16,8 @@ class AjusteController extends Controller
 
         $jsonData = file_get_contents(  'https://api.hilariweb.com/divisas');
         $divisas = json_decode( $jsonData, true );
-
-        return view( 'admin.ajustes.index', compact('divisas') );
+        $ajuste = Ajuste::first();
+        return view( 'admin.ajustes.index', compact('divisas','ajuste') );
     }
 
     /**
@@ -31,38 +31,45 @@ class AjusteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
-    {
-        //return response()->json($request->all());
-        
-        $empresa = new Ajuste(); // o el nombre de tu modelo 
-        $empresa->nombre = $request->nombre; 
-        $empresa->descripcion = $request->descripcion; 
-        $empresa->sucursal = $request->sucursal; 
-        $empresa->telefonos = $request->telefonos; 
-        $empresa->direccion = $request->direccion; 
-        $empresa->divisa = $request->divisa; 
-        $empresa->correo = $request->correo; 
-        $empresa->pagina_web = $request->pagina_web; 
+{
+    $empresa = new Ajuste(); 
+    $empresa->nombre = $request->nombre; 
+    $empresa->descripcion = $request->descripcion; 
+    $empresa->sucursal = $request->sucursal; 
+    $empresa->telefonos = $request->telefonos; 
+    $empresa->direccion = $request->direccion; 
+    $empresa->divisa = $request->divisa; 
+    $empresa->correo = $request->correo; 
+    $empresa->pagina_web = $request->pagina_web; 
 
-        if ($request->hasFile('logo')) {
-            $file = $request->file('logo');
-            $path = $file->store('public/logos','public'); // Guarda en storage/app/public/logos
-            $empresa->logo = Storage::url($path); // Guarda la URL accesible públicamente
-        }
-
-        if ($request->hasFile('logo_auto')) {
-            $file = $request->file('logo_auto');
-            $path = $file->store('public/logos','public'); // Guarda en storage/app/public/logos
-            $empresa->logo_auto = Storage::url($path); // Guarda la URL accesible públicamente
-        }
-
-
-        $empresa->save(); 
-        
-        return redirect()->back()->with('success', 'Ajustes guardados correctamente.');
-
+    // Guardar logo principal en public/logos
+    if ($request->hasFile('logo')) {
+        $file = $request->file('logo');
+        $filename = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path('logos'), $filename);
+        $empresa->logo = 'logos/' . $filename; // ruta relativa a public
     }
+
+    // Guardar logo para auto en public/logos
+    if ($request->hasFile('logo_auto')) {
+        $file = $request->file('logo_auto');
+        $filename = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path('logos'), $filename);
+        $empresa->logo_auto = 'logos/' . $filename; // ruta relativa a public
+    }
+
+    $empresa->save(); 
+    
+    return redirect()
+        ->back()
+        ->with('message', 'Ajustes guardados correctamente.')
+        ->with('icon', 'success');
+}
+
+
+
     /**
      * Display the specified resource.
      */
